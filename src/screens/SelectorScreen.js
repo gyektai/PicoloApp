@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { Context } from '../context/PlayerContext';
 
 const decks = [{ title: 'Quick Play', id: 1 }, { title: 'Best Cards', id: 2 }, { title: 'So Fucked Up', id:3 }, {title: 'So Much Drinking', id: 4}];
 
 const SelectorScreen = ({ navigation }) => {
     const [deck, setDeck] = useState('Quick Play');
-    const [players, setPlayers] = useState([]);
     const [newPlayerName, setNewPlayerName] = useState('');
+
+    const { players, addPlayer } = useContext(Context);
 
     return (
         <View>
@@ -32,7 +34,7 @@ const SelectorScreen = ({ navigation }) => {
                 value={newPlayerName}
                 onChangeText={(text) => setNewPlayerName(text)}
                 onEndEditing={() => {
-                    setPlayers([...players, { playerName: newPlayerName} ]);
+                    addPlayer( newPlayerName );
                     setNewPlayerName('');
                 }}
                 style={styles.playerInput}
@@ -40,9 +42,9 @@ const SelectorScreen = ({ navigation }) => {
             <FlatList
                 data={players}
                 keyExtractor={player => player.playerName}
-                renderItem={(item) => {
+                renderItem={({ item }) => {
                     return (
-                        <Text>{item.item.playerName}</Text>
+                        <Text>{item.playerName}</Text>
                     );
                 }}
             />
