@@ -8,7 +8,7 @@ const SelectorScreen = ({ navigation }) => {
     const [deck, setDeck] = useState('Quick Play');
     const [newPlayerName, setNewPlayerName] = useState('');
 
-    const { players, addPlayer } = useContext(Context);
+    const { state, addPlayer } = useContext(Context);
 
     return (
         <View>
@@ -40,7 +40,7 @@ const SelectorScreen = ({ navigation }) => {
                 style={styles.playerInput}
             />
             <FlatList
-                data={players}
+                data={state}
                 keyExtractor={player => player.playerName}
                 renderItem={({ item }) => {
                     return (

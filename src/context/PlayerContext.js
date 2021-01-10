@@ -6,7 +6,7 @@ const playerReducer = (state, action) => {
             return [
                 ...state,
                 {
-                    playerName: action.payload.name
+                    playerName: action.payload.playerName
                 }
             ];
         default:
@@ -15,8 +15,8 @@ const playerReducer = (state, action) => {
 };
 
 const addPlayer = (dispatch) => {
-    return (name, callback) => {
-        dispatch({ type: 'add_player', payload: { name }});
+    return (playerName, callback) => {
+        dispatch({ type: 'add_player', payload: { playerName }});
         if(callback) {
             callback();
         }

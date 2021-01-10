@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { Context } from '../context/PlayerContext';
 
 const allCards = [{ task: 'Drink a shot' }, { task: '*name Kill your drink' }, { task: 'Girls take a shot' }, { task: 'Hands Up' }, { task: 'You blow' }, { task: 'Card card' }, { task: '*name mess with *name' }, { task: 'Hit *name with some shit' }, { task: '*name has to do a body shot off of *name'}];
-const players = [{ name: 'Gideon'}, { name: 'Spencer' }, { name: 'Lilah' }, { name: 'Zoe' }];
+let players = [];
 
 let curCardIndex = 0;
 let numCardsPlayed = 0;
 
 const GameScreen = ({ navigation }) => {
     const [card, setCard] = useState(allCards[0]);
+    const { state } = useContext(Context);
+
+    useEffect(() => {
+        players = state;
+        console.log(players);
+    })
 
     const handleNextCard = () => {
         const addToCard = Math.floor(Math.random() * allCards.length) + 1;
@@ -26,7 +33,7 @@ const GameScreen = ({ navigation }) => {
         let randName = 0;
         for(let i = 1; i < cardParts.length; i++){
             randName = Math.floor(Math.random() * players.length);
-            buildingString = buildingString.concat(players[randName].name);
+            buildingString = buildingString.concat(players[randName].playerName);
             buildingString = buildingString.concat(cardParts[i]);
         }
         return { task: buildingString };
