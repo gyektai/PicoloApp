@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from './src/context/PlayerContext';
@@ -7,6 +7,10 @@ import SelectorScreen from './src/screens/SelectorScreen';
 import GameScreen from './src/screens/GameScreen';
 
 const Stack = createStackNavigator();
+
+
+
+
 
 export default () => {
   return (
