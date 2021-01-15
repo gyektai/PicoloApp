@@ -4,32 +4,38 @@ import { Context } from '../context/PlayerContext';
 import { useSpring, animated, config } from 'react-spring';
 
 
-const allCards = [{ task: 'Drink a shot' }, { task: '*name Kill your drink' }, { task: 'Girls take a shot' }, { task: 'Hands Up' }, { task: 'You blow' }, { task: 'Card card' }, { task: '*name mess with *name' }, { task: 'Hit *name with some shit' }, { task: '*name has to do a body shot off of *name'}];
 let players = [];
+let allCards = [];
 
 let curCardIndex = 0;
 let numCardsPlayed = 0;
 
 const AnimatedText = animated(Text);
-const AnimatedTask = ({ task }) => {
-    console.log('called again');
-    const props = useSpring({
-        translateX: 0,
-        from: {translateX: -200},
-        config: {tension: 200, friction: 5}});
-    console.log(props);
-    return <AnimatedText style={{...styles.task, transform: [{ translateX: props.translateX}]}}>{task}</AnimatedText>;
-}
 
-const GameScreen = ({ navigation }) => {
+
+const GameScreen = ({route, navigation }) => {
     const [card, setCard] = useState(allCards[0]);
     const { state } = useContext(Context);
+
+    useEffect(() => {
+        const { deck } = route.params;
+        allCards = deck.cards;
+        console.log('again');
+    }, []);
+
 
     // to load the player list, only necessary the first time
     // maybe useContext automatically deals with that but I'm gonna need to 
     // change the players array so I don't want to deal with it and Context
     useEffect(() => {
         players = state;
+    });
+
+    const props = useSpring({
+        to: {right: 0},
+        from: {right: -500},
+        config: {tension: 250, friction: 12},
+        reset: true,
     });
 
     const handleNextCard = () => {
@@ -43,7 +49,7 @@ const GameScreen = ({ navigation }) => {
 
     // to add names to the card if it has '*name' in the card's task
     const addNames = (cardToChange) => {
-        const cardParts = cardToChange.task.split('*name');
+        const cardParts = cardToChange.split('*name');
         let buildingString = cardParts[0];
         let randName = 0;
 
@@ -53,13 +59,13 @@ const GameScreen = ({ navigation }) => {
             buildingString = buildingString.concat(cardParts[i]);
         }
 
-        return { task: buildingString };
+        return buildingString;
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.taskContainer}>
-                <AnimatedTask task={card.task} key={card} />
+            <AnimatedText style={{...styles.task, ...props}}>{card}</AnimatedText>
             </View>
             <View style={styles.justALine}></View>
             <View style={styles.nextBtnContainer}>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'https://gyektai.pythonanywhere.com.',
+    baseURL: 'https://gyektai.pythonanywhere.com/api',
     headers: {
 
     }

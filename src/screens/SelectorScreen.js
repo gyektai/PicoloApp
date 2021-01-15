@@ -1,22 +1,34 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Context } from '../context/PlayerContext';
 import { FontAwesome5 } from '@expo/vector-icons';
+import useDecks from '../hooks/useDecks';
 
 
-const decks = [{ title: 'Quick Play', id: 1 }, { title: 'Best Cards', id: 2 }, { title: 'So Fucked Up', id:3 }, {title: 'So Much Drinking', id: 4}];
+// const decks = [{ title: 'Quick Play', id: 1 }, { title: 'Best Cards', id: 2 }, { title: 'So Fucked Up', id:3 }, {title: 'So Much Drinking', id: 4}];
 
 const SelectorScreen = ({ navigation }) => {
     const [deck, setDeck] = useState('Quick Play');
+    const [deckList, setDeckList] = useState([]);
     const [newPlayerName, setNewPlayerName] = useState('');
+    const [getDecks, results] = useDecks();
+
 
     const { state, addPlayer } = useContext(Context);
+
+    // the async function has to be declared in the useEffect to be called in it
+    useEffect(() => {
+        const loadDecks = async () => {
+            await getDecks();
+        };
+        loadDecks();
+    }, []);
 
     return (
         <View style={styles.screenContainer}>
             <View style={styles.topContainer}>
                 <FlatList 
-                    data={decks}
+                    data={results}
                     keyExtractor={deck => deck.title}
                     scrollEnabled={false}
                     renderItem={(item) => {
@@ -60,7 +72,7 @@ const SelectorScreen = ({ navigation }) => {
             <View style={styles.playContainer}>
  
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Game')}
+                    onPress={() => navigation.navigate('Game', { deck: results.find((deckToCheck) => deckToCheck.title === deck) })}
                 >
                     <Text style={styles.play}>Play <FontAwesome5 name='long-arrow-alt-right' style={{fontSize: 30}} /></Text>
                 </TouchableOpacity>
