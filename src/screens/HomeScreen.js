@@ -2,28 +2,50 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSpring, animated } from 'react-spring';
 import { FontAwesome5 } from '@expo/vector-icons';
+import MyBezier from '../components/MyBezier';
+import Dot from '../components/Dot';
+
 
 const AnimatedText = animated(Text);
 
+
 const HomeScreen = ({ navigation }) => {
-    const props = useSpring({
+    const iProps = useSpring({
         from: {fontSize: 20},
-        to: {fontSize: 60},
+        to: {fontSize: 34},
         config: {tension: 200, friction: 5}
         }
     );
+    const pProps= useSpring({
+        from: {fontSize: 20},
+        to: {fontSize: 76},
+        config: {tension: 200, friction: 5}
+        }
+    );
+    const mProps = useSpring({
+        from: {fontSize: 20},
+        to: {fontSize: 48},
+        config: {tension: 200, friction: 5}
+        }
+    );
+    
 
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-                <AnimatedText style={{...props, ...styles.title}}>It&apos;s Picolo,</AnimatedText>
-                <AnimatedText style={{...props, ...styles.title}}>Mofo!</AnimatedText>
+                <AnimatedText style={{...iProps, ...styles.title}}>it&apos;s <AnimatedText style={{...pProps, ...styles.title}}>Picolo,</AnimatedText></AnimatedText>
+                <AnimatedText style={{...mProps, ...styles.title, ...styles.mTitle}}>mofo!</AnimatedText>
                 
             </View>
-            <View style={styles.justALine}></View>
+            <View style={styles.bezierContainer}>
+                <MyBezier />
+            </View>
+            <View style={styles.dotContainer}>
+                <Dot />
+            </View>
             <View style={styles.playContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('Selector')}>
-                        <Text style={styles.play}>Play <FontAwesome5 name='long-arrow-alt-right' style={{fontSize: 30}} /></Text>
+                        <Text style={styles.play}>play <FontAwesome5 name='long-arrow-alt-right' style={{fontSize: 30}} /></Text>
                         
                     </TouchableOpacity>
             </View>
@@ -39,26 +61,37 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         flex: 4,
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     title: {
         textAlign: 'center',
         color: 'white'
     },
-    
+    mTitle: {
+        right: -45,
+        top: -30,
+    },
+    bezierContainer: {
+        position: 'absolute',
+        top: 350,
+    },
+    dotContainer: {
+        position: 'absolute',
+        top: 50,
+    },
     playContainer: {
-        flex: 1,
+        flex: 4,
 
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+
 
     },
     play: {
         fontSize: 34,
         textAlign: 'center',
-        height: 120,
+        height: 200,
         paddingTop: 30,
-        borderColor: 'white',
-        borderTopWidth: 3,
         color: 'white'
 
     },
