@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSpring, animated } from 'react-spring';
-import { FontAwesome5 } from '@expo/vector-icons';
+
 import MyBezier from '../components/MyBezier';
 import Dot from '../components/Dot';
 
@@ -28,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
         config: {tension: 200, friction: 5}
         }
     );
+
     
 
     return (
@@ -40,12 +41,13 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.bezierContainer}>
                 <MyBezier />
             </View>
-            <View style={styles.dotContainer}>
-                <Dot />
-            </View>
+            
             <View style={styles.playContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Selector')}>
-                        <Text style={styles.play}>play <FontAwesome5 name='long-arrow-alt-right' style={{fontSize: 30}} /></Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Config')}>
+                        <View style={styles.dotContainer}>
+                            <Dot direction='horizontal' xPos={0} />
+                        </View>
+                        <AnimatedText style={{...mProps, ...styles.play}}>play</AnimatedText>
                         
                     </TouchableOpacity>
             </View>
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
     },
     mTitle: {
         right: -45,
-        top: -30,
+        top: -35,
     },
     bezierContainer: {
         position: 'absolute',
@@ -78,7 +80,8 @@ const styles = StyleSheet.create({
     },
     dotContainer: {
         position: 'absolute',
-        top: 50,
+        top: 62,
+        right: -58,
     },
     playContainer: {
         flex: 4,
@@ -88,11 +91,12 @@ const styles = StyleSheet.create({
 
     },
     play: {
-        fontSize: 34,
         textAlign: 'center',
         height: 200,
         paddingTop: 30,
-        color: 'white'
+        color: 'white',
+        right: -30,
+        top: 10
 
     },
     justALine: {

@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { Context } from '../context/PlayerContext';
+import { Context as PlayerContext } from '../context/PlayerContext';
+import { Context as DeckContext } from '../context/DeckContext';
 import { useSpring, animated, config } from 'react-spring';
 
 
 let players = [];
-let allCards = [];
+let allCards = ['START!'];
 
 let curCardIndex = 0;
 let numCardsPlayed = 0;
@@ -13,23 +14,20 @@ let numCardsPlayed = 0;
 const AnimatedText = animated(Text);
 
 
-const GameScreen = ({route, navigation }) => {
+const GameScreen = ( { navigation } ) => {
     const [card, setCard] = useState(allCards[0]);
-    const { state } = useContext(Context);
-
-    useEffect(() => {
-        const { deck } = route.params;
-        allCards = deck.cards;
-        console.log('again');
-    }, []);
+    const { state: allPlayers } = useContext(PlayerContext);
+    const { state: deck } = useContext(DeckContext);
+    console.log(deck);
 
 
     // to load the player list, only necessary the first time
     // maybe useContext automatically deals with that but I'm gonna need to 
     // change the players array so I don't want to deal with it and Context
     useEffect(() => {
-        players = state;
-    });
+        players = allPlayers;
+        allCards = deck.cards;
+    }, []);
 
     const props = useSpring({
         to: {right: 0},
