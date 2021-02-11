@@ -9,25 +9,25 @@ const CarouselCardItem = ({ item, index }) => {
     switch (item.component) {
         case 'players':
             return (
-                <View style={{ backgroundColor: '#ff0066'}}>
+                <View style={styles.card}>
                     <ConfigPlayers />
                 </View>
             );
         case 'deck':
             return (
-                <View style={{ backgroundColor: '#ff0066'}}>
+                <View style={styles.card}>
                     <ConfigDeck />
                 </View>
             );
         case 'drinks':
             return (
-                <View style={{ backgroundColor: '#ff0066'}}>
+                <View style={styles.card}>
                     <ConfigDrinks />
                 </View>
             );
         default:
             return (
-                <View style={{ backgroundColor: '#ff0066'}}>
+                <View style={styles.card}>
                     <Text style={{ fontSize: 100 }}>Default</Text>
                 </View>
             );
@@ -39,6 +39,12 @@ const CarouselCardItem = ({ item, index }) => {
 };
 
 const styles = StyleSheet.create({
+    card: {
+        borderColor: '#FF4D94',
+        borderWidth: 6,
+        borderRadius: 15,
+        backgroundColor: '#FF0066',
+    }
 });
 
 export default CarouselCardItem;

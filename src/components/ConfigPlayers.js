@@ -48,7 +48,7 @@ const ConfigPlayers = () => {
 const styles = StyleSheet.create({
     adderContainer: {
         flexDirection: 'column-reverse',
-        height: 325,
+        height: 320,
     },
     heading: {
         color: 'white',

@@ -10,7 +10,7 @@ const DrinkOption = ({ drink }) => {
             <View style={styles.container}>
                 <Text style={styles.text}>{drink}</Text>
                 <View style={styles.checkContainer}>
-                    {selected ? <Entypo name="check" size={30} color="#ff0066" style={styles.check} /> : null}
+                    {selected ? <Entypo name="check" size={30} color="#FF4D94" style={styles.check} /> : null}
                 </View>
             </View>
         </TouchableWithoutFeedback>

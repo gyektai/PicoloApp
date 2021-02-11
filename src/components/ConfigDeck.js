@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Context } from '../context/DeckContext';
+import Decks from '../static/deckData';
 
 import useDecks from '../hooks/useDecks';
 
@@ -10,19 +11,22 @@ const ConfigDecks = () => {
 
 
     // the async function has to be declared in the useEffect to be called in it
+    // this is for using an api to load the decks but now I do that all locally which is so much easier
+    /*
     useEffect(() => {
         const loadDecks = async () => {
             await getDecks();
+            console.log(results[3]);
         };
         loadDecks();
     }, []);
-
+    */
     return (
         <View style={styles.container}>
             <Text style={styles.header}>vibe</Text>
             <View style={styles.deckListContainer}>
                 <FlatList 
-                        data={results}
+                        data={Decks}
                         keyExtractor={deck => deck.title}
                         scrollEnabled={false}
                         renderItem={(item) => {
@@ -46,7 +50,6 @@ const ConfigDecks = () => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 8,
     },
     header: {
         color: 'white',
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 36
     },
     deckListContainer: {
-        height: 325,
+        height: 320,
 
     }, 
     deckTOp: {

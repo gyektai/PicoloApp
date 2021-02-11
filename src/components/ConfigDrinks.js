@@ -25,7 +25,6 @@ const ConfigDrinks = () => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 8
     },
     header: {
         color: 'white',
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
         fontSize: 36
     },
     drinkListContainer: {
-        height: 325,
+        height: 320,
 
     }, 
     deckTOp: {

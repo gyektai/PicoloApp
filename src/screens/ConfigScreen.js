@@ -58,7 +58,8 @@ const ConfigScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#ff0066',
+        backgroundColor: '#FF0066',
+        opacity: 0.2,
 
     },
     topContainer: {
