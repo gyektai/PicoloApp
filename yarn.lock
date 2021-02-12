@@ -1034,6 +1034,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/gochi-hand/-/gochi-hand-0.1.0.tgz#a8b44eee5347dfa4fb56a872eacfaf3a6b1da4d1"
   integrity sha512-lAF8DxRhtCmWTenXcMVJZt9wvzB/NYCnK1AlCi7ZRrBJJokR+r4fMZM6/Im/f8rYWe24DnO8PQ5uIfFQE8+rBw==
 
+"@expo-google-fonts/raleway@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/raleway/-/raleway-0.1.0.tgz#c4828702327a269126acacb1017ee51adb3e851e"
+  integrity sha512-cBQmoq+Rw64dwni79kQaMLZaYaOEhDMZkdX7P9fBcv89aB7pVRot8qGUCJ75ly1hPmVTrLoV+XfxnTTIJ20+bg==
+
 "@expo/babel-preset-cli@0.2.18":
   version "0.2.18"
   resolved "https://registry.yarnpkg.com/@expo/babel-preset-cli/-/babel-preset-cli-0.2.18.tgz#136acf8a0efe259e29ebc614b68552e5acb47d86"

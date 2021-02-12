@@ -12,7 +12,9 @@ import GameScreen from './src/screens/GameScreen';
 import ConfigScreen from './src/screens/ConfigScreen';
 import BackgroundTest from './src/screens/BackgroundTest';
 
-import { useFonts, GochiHand_400Regular as gochi } from '@expo-google-fonts/gochi-hand';
+// import { useFonts, GochiHand_400Regular as gochi } from '@expo-google-fonts/gochi-hand';
+import { useFonts, Raleway_500Medium as raleway, Raleway_700Bold as ralewayBold } from '@expo-google-fonts/raleway';
+
 import GlobalFont from 'react-native-global-font';
 
 const Stack = createStackNavigator();
@@ -24,19 +26,24 @@ const Stack = createStackNavigator();
 export default () => {
 
   let [fontsLoaded] = useFonts({
-    gochi,
+    raleway,
+    ralewayBold
   });
   if(!fontsLoaded){
     return <Text>Loading</Text>;
   }
+  {/* to apply a font globally
+
   const fontName = 'gochi';
   GlobalFont.applyGlobal(fontName);
+  
+  */}
   
   return (
     <PlayerProvider>
       <DeckProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="bg" headerMode={false}>
+          <Stack.Navigator initialRouteName="Home" headerMode={false}>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Selector" component={SelectorScreen} />
             <Stack.Screen name="Game" component={GameScreen} />

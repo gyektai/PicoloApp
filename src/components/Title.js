@@ -18,7 +18,11 @@ const Title = () => {
 
 const styles = StyleSheet.create({
     tit: {
-        top: -80,
+        top: 50,
+        shadowOffset: {width: 0, height: 0},
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
+        shadowRadius: 3
     }
 })
 export default Title;
