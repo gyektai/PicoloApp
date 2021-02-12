@@ -6,12 +6,12 @@ import { Entypo } from '@expo/vector-icons';
 const WIDTH = Dimensions.get('screen').width;
 const HEIGHT = Dimensions.get('screen').height;
 
-const NextCardButton = () => {
+const NextCardButton = ({ handleNextCard }) => {
     return (
         <View style={styles.ncContainer}>
             <View style={styles.notTouchableBuffer}>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleNextCard}>
                 <Svg width={WIDTH} height="185.296" viewBox="0 0 414 140"> 
                     <Path
                         d="M0,105.3a30,30,0,0,1,30-30H384a30,30,0,0,0,30-30h0v140H0Z"

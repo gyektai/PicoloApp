@@ -4,9 +4,12 @@ import { Context as PlayerContext } from '../context/PlayerContext';
 import { Context as DeckContext } from '../context/DeckContext';
 import { useSpring, animated, config } from 'react-spring';
 
+import Background from '../components/Background';
+import PlayCircle from '../components/PlayCircle';
+import NextCardButton from '../components/NextCardButton';
 
 let players = [];
-let allCards = ['START!'];
+let allCards = [];
 
 let curCardIndex = 0;
 let numCardsPlayed = 0;
@@ -18,8 +21,6 @@ const GameScreen = ( { navigation } ) => {
     const [card, setCard] = useState(allCards[0]);
     const { state: allPlayers } = useContext(PlayerContext);
     const { state: deck } = useContext(DeckContext);
-    console.log(deck);
-
 
     // to load the player list, only necessary the first time
     // maybe useContext automatically deals with that but I'm gonna need to 
@@ -60,21 +61,17 @@ const GameScreen = ( { navigation } ) => {
         return buildingString;
     }
 
-    return (
+   const game = (
         <View style={styles.container}>
             <View style={styles.taskContainer}>
-            <AnimatedText style={{...styles.task, ...props}}>{card}</AnimatedText>
+                {allCards.length !== 0
+                ? <AnimatedText style={{...styles.task, ...props}}>{card}</AnimatedText>
+                : <PlayCircle size={260} /> }
             </View>
-            <View style={styles.justALine}></View>
-            <View style={styles.nextBtnContainer}>
-            <TouchableOpacity
-                onPress={handleNextCard}
-            >
-                <Text style={styles.nextCardButton}>Next Card</Text>
-            </TouchableOpacity>
-            </View>
+            <NextCardButton handleNextCard={handleNextCard} />
         </View>
-    );
+   )
+    return <Background component={game} />;
 };
 
 
@@ -83,35 +80,21 @@ const GameScreen = ( { navigation } ) => {
 const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#ff0066',
+        backgroundColor: 'transparent',
 
     },
     taskContainer: {
         flex: 4,
         justifyContent: 'center',
+        alignItems: 'center',
     },
     task: {
         textAlign: 'center',
         color: 'white',
-        fontSize: 40
-    },
-    nextBtnContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
-    },
-    nextCardButton: {
-        fontSize: 34,
-        textAlign: 'center',
-        height: 120,
-        paddingTop: 30,
-        borderColor: 'white',
-        borderTopWidth: 3,
-        color: 'white'
-    },
-    justALine: {
-        alignSelf: 'stretch',
-        borderColor: 'white',
-        borderWidth: 1,
+        fontSize: 35,
+        fontFamily: 'raleway',
+        top: -45,
+        paddingHorizontal: 15
     },
 });
 

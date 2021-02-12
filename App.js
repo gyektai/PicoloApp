@@ -43,7 +43,7 @@ export default () => {
     <PlayerProvider>
       <DeckProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="bg" headerMode={false}>
+          <Stack.Navigator initialRouteName="Home" headerMode={false}>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Selector" component={SelectorScreen} />
             <Stack.Screen name="Game" component={GameScreen} />
