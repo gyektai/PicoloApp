@@ -32,8 +32,8 @@ const GameScreen = ( { navigation } ) => {
 
     const props = useSpring({
         to: {right: 0},
-        from: {right: -500},
-        config: {tension: 250, friction: 12},
+        from: {right: -200},
+        config: {tension: 550, friction: 20},
         reset: true,
     });
 

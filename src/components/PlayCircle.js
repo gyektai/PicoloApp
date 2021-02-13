@@ -26,7 +26,7 @@ const PlayCircle = ({ size }) => {
                 />
                 
             </Svg>
-            <Text style={{...styles.playText, top: -1*size/2-12 }}>P   L   A   Y</Text>
+            <Text style={{...styles.playText, top: -1*size/2-12, fontSize: size <= 201 ? 14 : 18 }}>P   L   A   Y</Text>
         </View>
     );
 };
