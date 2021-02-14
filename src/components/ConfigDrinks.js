@@ -7,7 +7,6 @@ const ConfigDrinks = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>drinks</Text>
             <View style={styles.drinkListContainer}>
                 <FlatList 
                         data={[{ drink: 'tequila' }, { drink: 'beer' } , { drink: 'vodka' }, { drink: 'seltzer' }]}

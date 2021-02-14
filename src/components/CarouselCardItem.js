@@ -40,10 +40,6 @@ const CarouselCardItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
     card: {
-        borderColor: 'rgba(0,0,0,0.1)',
-        borderWidth: 2,
-        borderRadius: 15,
-        backgroundColor: 'rgba(255,255,255,0.2)',
     }
 });
 

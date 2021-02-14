@@ -8,7 +8,8 @@ import PlayCircle from '../components/PlayCircle';
 import ActiveDot from '../components/ActiveDot';
 import InactiveDot from '../components/InactiveDot';
 
-export const SLIDER_WIDTH = Dimensions.get('window').width + 40
+const WIDTH = Dimensions.get('window').width;
+export const SLIDER_WIDTH = WIDTH + 40;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 
@@ -19,6 +20,21 @@ const ConfigScreen = ({ navigation }) => {
     const config = (
         <View style={styles.container}>
             <View style={styles.topContainer}>
+                <Text style={styles.pageTitle}>
+                    {index === 0 ? "Players" : null}
+                    {index === 1 ? "Vibe" : null}
+                    {index === 2 ? "Drinks" : null}
+                </Text>
+                <Pagination
+                    dotsLength={3}
+                    activeDotIndex={index}
+                    dotElement={<ActiveDot />}
+                    inactiveDotElement={<InactiveDot />}
+                    carouselRef={isCarousel}
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}
+                    tappableDots={true}
+                />
             </View>
             <View style={styles.carouselContainer}>
                 <Carousel
@@ -32,19 +48,6 @@ const ConfigScreen = ({ navigation }) => {
                     inactiveSlideShift={0}
                     onSnapToItem={(index) => setIndex(index)}
                     useScrollView={true}
-                />
-                <Pagination
-                    dotsLength={3}
-                    activeDotIndex={index}
-                    dotElement={<ActiveDot />}
-                    inactiveDotElement={<InactiveDot />}
-                    carouselRef={isCarousel}
-                    dotStyle={{
-                        width: 10, height: 10, borderRadius: 5, marginHorizontal: 0, backgroundColor: 'white'
-                        }}
-                    inactiveDotOpacity={0.4}
-                    inactiveDotScale={0.6}
-                    tappableDots={true}
                 />
             </View>
             <View style={styles.bottomContainer}>
@@ -64,7 +67,17 @@ const styles = StyleSheet.create({
 
     },
     topContainer: {
-        flex: 1,
+        flex: 2,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+    },
+    pageTitle: {
+        color: 'white',
+        fontSize: 42,
+        fontFamily: 'raleway',
+        top: -20,
+        right: -1*(WIDTH - (WIDTH+40)*0.7)/2,
     },
     carouselContainer: {
         flex: 6,

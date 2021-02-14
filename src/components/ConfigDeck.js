@@ -23,7 +23,6 @@ const ConfigDecks = () => {
     */
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>vibe</Text>
             <View style={styles.deckListContainer}>
                 <FlatList 
                         data={Decks}
