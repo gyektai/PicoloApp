@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'r
 import { Context } from '../context/PlayerContext';
 
 import NoPlayers from '../components/NoPlayers';
+import { Ionicons } from '@expo/vector-icons';
 
 const ConfigPlayers = () => {
     const [newPlayerName, setNewPlayerName] = useState('');
@@ -25,22 +26,26 @@ const ConfigPlayers = () => {
                 }}
                 style={styles.playerInput}
             />
-            <View style={styles.nameListContainer}>
+            <View style={styles.insideContainer}>
             {state.length === 0
                 ?   <NoPlayers />
-                :   <FlatList
-                        data={state}
-                        keyExtractor={player => player.playerName}
-                        renderItem={({ item }) => {
-                            return (
-                                <Text style={styles.nameAdded}>{item.playerName}</Text>
-                            );
-                        }}
-                        numColumns={2}
-                    /> }
+                :   <View style={styles.namesListContainer}>
+                        <View style={styles.iconContainer}>
+                            <Ionicons name="ios-person-add-sharp" size={36} color="white" />
+                        </View>
+                        <FlatList
+                            data={state}
+                            keyExtractor={player => player.playerName}
+                            renderItem={({ item, index }) => {
+                                return (
+                                    <Text style={styles.nameAdded}>{item.playerName}</Text>
+                                );
+                            }}
+                            numColumns={2}
+                        /> 
+                    </View>
+                    }
             </View>
-
-
         </View>
     );
 };
@@ -72,15 +77,35 @@ const styles = StyleSheet.create({
         marginBottom: 6
 
     }, 
-    nameListContainer: {
-        flex: 1
+    iconContainer: {
+        marginBottom: 10,
+        height: 56,
+        width: 56,
+        borderColor: 'rgba(255,255,255,0.6)',
+        borderWidth: 1,
+        borderRadius: 28,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        top: 20,
+    },
+    apIcon: {
+        top: -2,
+        right: -2,
+    },
+    insideContainer: {
+        flex: 1,
+    },
+    namesListContainer: {
+        flex: 1,
     },
     nameAdded: {
         color: 'white',
-        fontSize: 28,
+        fontFamily: 'raleway',
+        fontSize: 22,
         flex: 1,
         textAlign: 'center',
-        paddingTop: 23
+        paddingTop: 20
     },
 });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { Entypo } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons'; 
 
 const DrinkOption = ({ drink }) => {
     const [selected, setSelected] = useState(false);
@@ -10,7 +10,7 @@ const DrinkOption = ({ drink }) => {
             <View style={styles.container}>
                 <Text style={styles.text}>{drink}</Text>
                 <View style={styles.checkContainer}>
-                    {selected ? <Entypo name="check" size={30} color="#FF4D94" style={styles.check} /> : null}
+                    {selected ? <Feather name="check" size={26} color="white" style={styles.check} /> : null}
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
+        fontFamily: 'raleway',
         fontSize: 24,
         marginVertical: 10,
         marginLeft: 15,
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         height: 30,
         width: 30,
-        backgroundColor: 'white',
-        top: 4
+        top: 4,
+        right: 10,
     },
     check: {
-        top: -3,
-        right: 2
+        top: 0,
+        right: 0
     }
 });
 

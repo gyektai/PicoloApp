@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Context } from '../context/DeckContext';
 import Decks from '../static/deckData';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Feather } from '@expo/vector-icons'; 
+
 
 import useDecks from '../hooks/useDecks';
 
@@ -21,6 +24,16 @@ const ConfigDecks = () => {
         loadDecks();
     }, []);
     */
+    const selectedDeckOption = (deckTitle) => (
+        <LinearGradient colors={['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.05)']} style={styles.lg}>
+            <Feather name="check" size={28} color="white" style={styles.checkIcon} />
+            <Text style={{ ...styles.deckOption, ...styles.deckSelected }}>{deckTitle}</Text>
+        </LinearGradient>
+    );
+    const unselectedDeckOption = (deckTitle) => (
+        <Text style={styles.deckOption}>{deckTitle}</Text>
+    )
+
     return (
         <View style={styles.container}>
             <View style={styles.deckListContainer}>
@@ -35,7 +48,9 @@ const ConfigDecks = () => {
                                     onPress={() => {
                                     changeDeck(item.item);
                                 }}>
-                                    <Text style={item.item === state ? { ...styles.deckOption, ...styles.deckSelected } : styles.deckOption}>{item.item.title}</Text>
+                                    <View style={styles.deckContainer}>
+                                        {item.item === state ? selectedDeckOption(item.item.title) : unselectedDeckOption(item.item.title)}
+                                    </View>
                                 </TouchableOpacity>
                             
                             );
@@ -59,25 +74,36 @@ const styles = StyleSheet.create({
         height: 320,
 
     }, 
+    // deck touchable opacity
     deckTOp: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center'
+    },
+    lg: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: 'center',
+        borderRadius: 12,
+    },
+    checkIcon: {
+        position: 'absolute',
+        right: 10,
+        top: 7,
+    },
+    deckContainer: {
+        height: 140,
+        width: 140,
+        borderColor: 'rgba(255,255,255,0.3)',
+        borderWidth: 2,
+        borderRadius: 14,
+        marginVertical: 10,
+        paddingHorizontal: 6,
+        justifyContent: 'center',
     },
     deckOption: {
         color: 'white',
-        fontSize: 32,
+        fontFamily: 'raleway',
+        fontSize: 28,
         textAlign: 'center',
-        marginVertical: 50,
-        paddingHorizontal: 6
-
-    },
-    deckSelected: {
-        borderColor: 'white',
-        borderWidth: 3,
-        borderRadius: 10,
-        // has to be different than the deckOption because of the border and padding
-        marginVertical: 37,
-        paddingHorizontal: 10,
-        paddingVertical: 10
     },
 });
 
