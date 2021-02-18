@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontFamily: 'raleway',
-        fontSize: 24,
-        marginVertical: 10,
+        fontSize: 20,
+        marginVertical: 12,
         marginLeft: 15,
         paddingHorizontal: 6
 

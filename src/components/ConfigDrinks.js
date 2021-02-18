@@ -3,19 +3,31 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native
 import DrinkOption from './DrinkOption'
 
 
+const DRINKS = ['tequila', 'beer', 'vodka', 'seltzer', 'cider', 'bourbon', 'cocktail', 'oj', 'sprite', 'coke'];
+let drinks = [];
+
+
 const ConfigDrinks = () => {
+    useEffect(
+        () => {
+            for(let i = 0; i < DRINKS.length; i++){
+                drinks.push({ drink: DRINKS[i]});
+            }
+            console.log(drinks);
+        }, []);
 
     return (
         <View style={styles.container}>
             <View style={styles.drinkListContainer}>
                 <FlatList 
-                        data={[{ drink: 'tequila' }, { drink: 'beer' } , { drink: 'vodka' }, { drink: 'seltzer' }]}
+                        data={drinks}
                         keyExtractor={item => item.drink}
                         renderItem={(item) => {
                             return (
                                 <DrinkOption drink={item.item.drink} isSelected={true} />
                             );
                         }}
+                        showsVerticalScrollIndicator={false}
                     />
                 </View>
         </View>

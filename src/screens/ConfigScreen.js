@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 2,
         alignItems: 'center',
-        top: -15,
+        top: -30,
     },
     dotContainer: {
         position: 'absolute',
