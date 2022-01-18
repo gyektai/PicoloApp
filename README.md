@@ -1,7 +1,5 @@
 # PicoloApp
-Application version of my picolo game. Much further built out than the web version
-
-It's a drinking game. I'm in college. What else do you expect?
+Application version of my picolo drinking game.
 
 Developed using React-Native. Incorporates context, hooks, state, useEffect, react-spring, svg, all the standard stuff.
 
